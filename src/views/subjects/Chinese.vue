@@ -432,7 +432,7 @@ const buildCharPositionMap = () => {
     charPositionMap.value.push({ line: -1, char: index })
   })
   // 朝代 + 作者
-  ;[...currentPoem.value.dynastyChars, ...[,], ...currentPoem.value.authorChars].forEach((_: any, index: number) => {
+  ;[...currentPoem.value.dynastyChars, ...['代', '，'], ...currentPoem.value.authorChars].forEach((_: any, index: number) => {
     charPositionMap.value.push({ line: -2, char: index })
   })
   // 正文部分
