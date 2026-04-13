@@ -94,7 +94,7 @@
                   </div>
                 </div>
                 <!-- 朝代作者 -->
-                <div class="flex flex-wrap justify-center gap-x-4 mb-6">
+                <div class="flex flex-wrap justify-center mb-6">
                   <div 
                     v-for="(char, index) in currentPoem.dynastyChars" 
                     :key="index" 
@@ -123,7 +123,7 @@
                   </div>
                   <!-- "代"字 -->
                   <div 
-                    class="text-center transition-all duration-200 relative"
+                    class="text-center transition-all relative"
                     :class="{
                       'scale-110': isCurrentChar(-2, currentPoem.dynastyChars.length),
                       'text-orange-600': isCurrentChar(-2, currentPoem.dynastyChars.length),
@@ -135,8 +135,8 @@
                     >
                       🐶
                     </div>
-                    <p class="text-sm mb-1 text-gray-500">dài</p>
-                    <p class="text-base" :class="isCurrentChar(-2, currentPoem.dynastyChars.length) ? 'text-orange-600 font-medium' : 'text-gray-600'">代</p>
+                    <!-- <p class="text-sm mb-1 text-gray-500">dài</p>
+                    <p class="text-base" :class="isCurrentChar(-2, currentPoem.dynastyChars.length) ? 'text-orange-600 font-medium' : 'text-gray-600'">代</p> -->
                   </div>
                   <span class="mx-2 text-gray-600">·</span>
                   <!-- 作者部分 -->
@@ -278,7 +278,7 @@ const highlightTimeoutId = ref<NodeJS.Timeout | null>(null)
 // 当前高亮进度，暂停时保持状态
 const currentHighlightIndex = ref(0)
 // 高亮时长配置，统一固定时长，所有字符步调一致
-const charDuration = ref(440) // 每个字符停留440ms，比之前放慢20ms，匹配语音节奏
+const charDuration = ref(400) // 每个字符停留440ms，比之前放慢20ms，匹配语音节奏
 
 const poems = [
   {
@@ -432,7 +432,7 @@ const buildCharPositionMap = () => {
     charPositionMap.value.push({ line: -1, char: index })
   })
   // 朝代 + 作者
-  ;[...currentPoem.value.dynastyChars, ...['代'], ...['，'], ...currentPoem.value.authorChars].forEach((_: any, index: number) => {
+  ;[...currentPoem.value.dynastyChars, ...[,], ...currentPoem.value.authorChars].forEach((_: any, index: number) => {
     charPositionMap.value.push({ line: -2, char: index })
   })
   // 正文部分
@@ -454,16 +454,16 @@ const playWithNaturalSpeech = () => {
   // 拼接完整朗诵文本
   const fullText = [
     currentPoem.value.titleChars.join('') + '。',
-    currentPoem.value.dynastyChars.join('') + '代，',
+    currentPoem.value.dynastyChars.join('') + '',
     currentPoem.value.authorChars.join('') + '。',
     ...currentPoem.value.contentLines.map(line => line.join('') + '。')
   ].join('')
   
   const utterance = new SpeechSynthesisUtterance(fullText)
   utterance.lang = 'zh-CN'
-  utterance.volume = 1
-  utterance.rate = 0.79 // 小学教师带读语速，每个字发音清晰，适合儿童跟读
-  utterance.pitch = 1.03 // 音调更柔和，贴近真实教师发音
+  utterance.volume = 1.2
+  utterance.rate = 0.60 // 小学教师带读语速，每个字发音清晰，适合儿童跟读
+  utterance.pitch = 1.1 // 音调更柔和，贴近真实教师发音
 
   // 优先选择自然度最高的中文女声（微软晓晓、阿里云小爱效果最优）
   const voices = speechSynthesis.getVoices()
