@@ -56,55 +56,6 @@ const tabComponents = [
 ]
 
 // 模拟数据
-const poems = ref([
-  {
-    id: 1,
-    mastery: 0,
-    titleChars: ['静', '夜', '思'],
-    titlePinyin: ['jìng', 'yè', 'sī'],
-    dynastyChars: ['唐'],
-    dynastyPinyin: ['táng'],
-    authorChars: ['李', '白'],
-    authorPinyin: ['lǐ', 'bái'],
-    sceneImage: 'https://picsum.photos/seed/jingyesi/800/400',
-    contentLines: [
-      ['床', '前', '明', '月', '光', '，'],
-      ['疑', '是', '地', '上', '霜', '。'],
-      ['举', '头', '望', '明', '月', '，'],
-      ['低', '头', '思', '故', '乡', '。']
-    ],
-    pinyinLines: [
-      ['chuáng', 'qián', 'míng', 'yuè', 'guāng', ''],
-      ['yí', 'shì', 'dì', 'shàng', 'shuāng', ''],
-      ['jǔ', 'tóu', 'wàng', 'míng', 'yuè', ''],
-      ['dī', 'tóu', 'sī', 'gù', 'xiāng', '']
-    ]
-  },
-  {
-    id: 2,
-    mastery: 0,
-    titleChars: ['古', '朗', '月', '行', '（', '节', '选', '）'],
-    titlePinyin: ['gǔ', 'lǎng', 'yuè', 'xíng', '', 'jié', 'xuǎn', ''],
-    dynastyChars: ['唐'],
-    dynastyPinyin: ['táng'],
-    authorChars: ['李', '白'],
-    authorPinyin: ['lǐ', 'bái'],
-    sceneImage: 'https://picsum.photos/seed/gulangyuexing/800/400',
-    contentLines: [
-      ['小', '时', '不', '识', '月', '，'],
-      ['呼', '作', '白', '玉', '盘', '。'],
-      ['又', '疑', '瑶', '台', '镜', '，'],
-      ['飞', '在', '青', '云', '端', '。']
-    ],
-    pinyinLines: [
-      ['xiǎo', 'shí', 'bù', 'shí', 'yuè', ''],
-      ['hū', 'zuò', 'bái', 'yù', 'pán', ''],
-      ['yòu', 'yí', 'yáo', 'tái', 'jìng', ''],
-      ['fēi', 'zài', 'qīng', 'yún', 'duān', '']
-    ]
-  }
-])
-
 const articles = [
   { id: 1, title: '小猫钓鱼', grade: 1 },
   { id: 2, title: '三只小猪', grade: 2 },
@@ -115,18 +66,14 @@ const currentWord = '明'
 
 // 组件props配置
 const tabProps = [
-  { poems: poems.value },
+  {},
   { currentWord },
   { articles }
 ]
 
 // 组件事件配置
 const tabEvents = [
-  {
-    'update:poems': (newPoems: any[]) => {
-      poems.value = newPoems
-    }
-  },
+  {},
   {},
   {}
 ]
